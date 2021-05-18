@@ -44,7 +44,7 @@ Specifically this project is part of the first course in this specialization.
 
 - The figures looks like that
   <p align="center">
-   <img src="https://github.com/lilosa88/Fashion-MNIST-/blob/main/Images/Captura%20de%20Pantalla%202021-05-18%20a%20la(s)%2016.20.14.png" width="460" height="140">
+   <img src="https://github.com/lilosa88/Fashion-MNIST-/blob/main/Images/Captura%20de%20Pantalla%202021-05-18%20a%20la(s)%2016.20.14.png" width="160" height="140">
   </p> 
   
 # Feature engineering
