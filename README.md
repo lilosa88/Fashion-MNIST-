@@ -8,7 +8,7 @@
 3. Natural Language Processing in TensorFlow 
 4. Sequences, Time Series and Prediction
 
-Specifically this project is part of the first course in this specialization. 
+  Specifically this project is part of the first course in this specialization. 
 
 - MNIST ("Modified National Institute of Standards and Technology") is the de facto “hello world” dataset of computer vision. Since its release in 1999, this classic dataset of handwritten images has served as the basis for benchmarking classification algorithms. As new machine learning techniques emerge, MNIST remains a reliable resource for researchers and learners alike.
 
@@ -29,16 +29,25 @@ Specifically this project is part of the first course in this specialization.
 
 - Each training and test example is assigned to one of the following labels:
 
-0 T-shirt/top
-1 Trouser
-2 Pullover
-3 Dress
-4 Coat
-5 Sandal
-6 Shirt
-7 Sneaker
-8 Bag
-9 Ankle boot
+  0 T-shirt/top
+  
+  1 Trouser
+  
+  2 Pullover
+  
+  3 Dress
+  
+  4 Coat
+  
+  5 Sandal
+  
+  6 Shirt
+  
+  7 Sneaker
+  
+  8 Bag
+  
+  9 Ankle boot
 
 - Each row is a separate image, where: Column 1 is the class label and the remaining columns are pixel numbers (784 total). Each value is the darkness of the pixel (1 to 255)
 
@@ -50,8 +59,10 @@ Specifically this project is part of the first course in this specialization.
 # Feature engineering
 
 - The Fashion MNIST data is available directly in the tf.keras datasets API. Using load_data we get two sets of two lists, these will be the training and testing values for the graphics that contain the clothing items and their labels.
-- 
+ 
 - The values in the number are between 0 and 255. Since we will train a neural network, we need that all values are between 0 and 1. Therefore, we normalize dividing by 255.
+
+- We reshape the images (only for the second model), following training_images.reshape(60000, 28, 28, 1) and test_images.reshape(10000, 28, 28, 1)
 
 
 # Neural Network model
