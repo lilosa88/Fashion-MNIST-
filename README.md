@@ -86,4 +86,6 @@
 
 - We built this model using Adam optimizer and sparse_categorical_crossentropy as loss function.
 
+- The number of epochs=20
+
 - We obtained Accuracy 0.9953 for the train data and Accuracy 0.9147 for the validation data.
