@@ -14,12 +14,12 @@ Specifically this project is part of the first course in this specialization.
 
 - Fashion-MNIST is a dataset of Zalando's article images—consisting of a training set of 60,000 examples and a test set of 10,000 examples. Each example is a 28x28 grayscale image, associated with a label from 10 classes. Zalando intends Fashion-MNIST to serve as a direct drop-in replacement for the original MNIST dataset for benchmarking machine learning algorithms. It shares the same image size and structure of training and testing splits.
 
-- The objective of this study is to correctly identify the different Zalando's articles from a dataset of tens of thousands of handwritten images.
+- The objective of this study is to correctly identify the different Zalando's articles from the dataset.
 
 # Code and Resources Used
 
 - **Phyton Version:** 3.0
-- **Packages:** pandas, numpy, sklearn, seaborn, matplotlib
+- **Packages:** pandas, numpy, sklearn, seaborn, matplotlib, tensorflow, keras.
 
 # Data description  
 
@@ -42,24 +42,37 @@ Specifically this project is part of the first course in this specialization.
 
 - Each row is a separate image, where: Column 1 is the class label and the remaining columns are pixel numbers (784 total). Each value is the darkness of the pixel (1 to 255)
 
-- The figures looks like that
+- The figures looks like:
   <p align="center">
    <img src="https://github.com/lilosa88/Fashion-MNIST-/blob/main/Images/Captura%20de%20Pantalla%202021-05-18%20a%20la(s)%2016.20.14.png" width="190" height="180">
   </p> 
   
 # Feature engineering
-  
-- Defining X and Y from the df_train dataset
-- We check which is the maximum value that you can find in one row of the df_train dataset. The maximum value is 255. If we are training a neural network, for    various reasons it's easier if we treat all values as between 0 and 1, therefore we need to normalize our datasets.
-- So we normalize dividing by 255.
-- Resahping, following X = X.values.reshape(-1, 28,28,1)
-- Label encoding for the y label
-- Split into train and test
+
+- The Fashion MNIST data is available directly in the tf.keras datasets API. Using load_data we get two sets of two lists, these will be the training and testing values for the graphics that contain the clothing items and their labels.
+- 
+- The values in the number are between 0 and 255. Since we will train a neural network, we need that all values are between 0 and 1. Therefore, we normalize dividing by 255.
+
 
 # Neural Network model
 
-We compare the performance of two following two neural networks:
-- Simple Model (Accuracy 0.97238)
-- Model with double convolutions and pooling (Accuracy 0.9864)
+### First model: Simple Neural Network
 
-In both case the activation functions used were 'relu' and 'softmax', the lr = 0.001 and as loss function we use categorical_crossentropy.
+- This model was created using tf.keras.models.Sequential, which defines a SEQUENCE of layers in the neural network. These sequence of layers used were the following:
+  - One flatten layer: It turns the images into a 1 dimensional set.
+  - Three Dense layers: This adds a layer of neurons. Each layer of neurons has an activation function to tell them what to do. Therefore, the first Dense layer         consisted in 1024 neurons with relu as an activation function. The second, have 128 neurons and the same activation function. Finally, the thrird had 10 neurons     and softmax as an activation function. Indeed, the number of neurons in the last layer should match the number of classes you are classifying for. In this case     it's the digits 0-9, so there are 10 of them.
+
+- We built this model using Adam optimizer and sparse_categorical_crossentropy as loss function.
+
+- We obtained Accuracy 0.9299 for the train data and Accuracy 0.8923 for the validation data.
+
+### Second model: Neural Network with convolution and pooling
+
+- This model was created using tf.keras.models.Sequential, which defines a SEQUENCE of layers in the neural network. These sequence of layers used were the following:
+  - One Convolution layer with a MaxPooling layer which is then designed to compress the image, while maintaining the content of the features that were                 highlighted by the convlution. By specifying (2,2) for the MaxPooling, the effect is to quarter the size of the image.
+  - One flatten layer: It turns the images into a 1 dimensional set.
+  - Three Dense layers: This adds a layer of neurons. Each layer of neurons has an activation function to tell them what to do. Therefore, the first Dense layer         consisted in 1024 neurons with relu as an activation function. The second, have 128 neurons and the same activation function. Finally, the thrird had 10 neurons     and softmax as an activation function. Indeed, the number of neurons in the last layer should match the number of classes you are classifying for. In this case     it's the digits 0-9, so there are 10 of them.
+
+- We built this model using Adam optimizer and sparse_categorical_crossentropy as loss function.
+
+- We obtained Accuracy 0.9953 for the train data and Accuracy 0.9147 for the validation data.
